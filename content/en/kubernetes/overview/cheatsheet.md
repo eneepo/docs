@@ -1,5 +1,5 @@
 ---
-title: "Cheatsheet"
+title: "Commands Cheatsheet"
 description: ""
 lead: ""
 date: 2023-07-16T09:29:02+02:00
@@ -10,7 +10,6 @@ type: docs
 menu:
   kubernetes:
     parent: "overview"
-images: []
 weight: 100
 toc: false
 ---
