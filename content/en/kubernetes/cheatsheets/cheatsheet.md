@@ -47,7 +47,7 @@ kubectl apply -f <file.yaml>           # Apply changes to a resource from a YAML
 kubectl apply -f <url>                 # Apply a resource from a URL
 ```
 
-## Editing resources
+## Editing Resources
 ```shell
 kubectl edit <resource_type> <resource_name> # Edit a resource using the default editor
 ```
@@ -59,7 +59,7 @@ kubectl delete deployment <dep_name>   # Delete a specific deployment
 kubectl delete service <svc_name>      # Delete a specific service
 ```
 
-## Labeling resources
+## Labeling Resources
 ```shell
 kubectl label <resource_type> <resource_name> key=value  # Add a label to a resource
 ```
@@ -86,6 +86,14 @@ kubectl describe resourcequota <quota_name>     # Describe a specific resource q
 kubectl port-forward <pod_name> <local_port>:<pod_port>  # Forward local port to a specific pod's port
 ```
 
+## Copying Files and Directories
+```shell
+kubectl cp /tmp/foo_dir my-pod:/tmp/bar_dir            # Copy /tmp/foo_dir local directory to /tmp/bar_dir in a remote pod in the current namespace
+kubectl cp /tmp/foo my-pod:/tmp/bar -c my-container    # Copy /tmp/foo local file to /tmp/bar in a remote pod in a specific container
+kubectl cp /tmp/foo my-namespace/my-pod:/tmp/bar       # Copy /tmp/foo local file to /tmp/bar in a remote pod in namespace my-namespace
+kubectl cp my-namespace/my-pod:/tmp/foo /tmp/bar       # Copy /tmp/foo from a remote pod to /tmp/bar locally
+```
+
 ## Logs and Troubleshooting
 ```shell
 kubectl logs <pod_name>                # View the logs of a specific pod
@@ -96,3 +104,17 @@ kubectl top pod                        # Show CPU and memory usage for pods
 kubectl get events                     # List all events in the current namespace
 ```
 
+## Formatting Output
+To output details to your terminal window in a specific format, add the `-o` or `--output` flag to a supported kubectl command.
+
+
+| Format                                   | Description                                                                                              |
+|------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `-o=custom-columns=<spec>`               | Print a table using a comma separated list of custom columns                                             |
+| `-o=custom-columns-file=<filename>`      | Print a table using the custom columns template in the <filename> file                             |
+| `-o=json`                                | Output a JSON formatted API object                                                                       |
+| `-o=jsonpath=<template>`                 | Print the fields defined in a jsonpath expression                                                        |
+| `-o=jsonpath-file=<filename>`            | Print the fields defined by the jsonpath expression in the &lt;filename&gt; file                         |
+| `-o=name`                                | Print only the resource name and nothing else                                                            |
+| `-o=wide`                                | Output in the plain-text format with any additional information, and for pods, the node name is included |
+| `-o=yaml`                                | Output a YAML formatted API object                                                                       |
