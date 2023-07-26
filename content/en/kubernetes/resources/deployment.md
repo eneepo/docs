@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1020
-toc: false
+toc: true
 ---
 A Deployment is a higher-level resource that provides declarative updates for managing the state of your application. It is one of the primary mechanisms used for deploying and managing applications in a Kubernetes cluster. Deployments build on top of ReplicaSets, offering additional features and capabilities for managing application updates and rollbacks.
 

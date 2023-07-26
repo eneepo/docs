@@ -9,7 +9,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "overview"
+    parent: "cheatsheets"
 weight: 100
 toc: true
 ---

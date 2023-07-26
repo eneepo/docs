@@ -6,23 +6,23 @@
 
 [[main]]
   name = "API Resources"
-  weight = 30
+  weight = 10
   identifier = "resources"
   url = "/kubernetes/resources"
   parent = "kubernetes"
 
 [[main]]
   name = "Configurations"
-  weight = 30
+  weight = 20
   identifier = "configurations"
   url = "/kubernetes/configurations"
   parent = "kubernetes"
 
 [[main]]
-  name = "Overview"
+  name = "Cheatsheets"
   weight = 30
-  identifier = "overview"
-  url = "/kubernetes/overview"
+  identifier = "cheatsheets"
+  url = "/kubernetes/cheatsheets"
   parent = "kubernetes"
 
 [[social]]

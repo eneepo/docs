@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1015
-toc: false
+toc: true
 ---
 A ReplicaSet is a high-level abstraction that ensures a specified number of identical pod replicas are running at all times. It is one of the key resources used for managing and scaling applications in a Kubernetes cluster. ReplicaSets are part of the Kubernetes controller system and provide the ability to maintain the desired state of a set of pods.
 

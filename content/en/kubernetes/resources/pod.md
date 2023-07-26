@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1005
-toc: false
+toc: true
 ---
 A Pod is the smallest and simplest unit you can deploy. It represents a single instance of a running process in a cluster. A Pod may contain one or more tightly coupled containers, sharing the same network namespace and having access to the same storage volumes. To make it simple, let's use an analogy: think of a Pod as a small, self-contained lunchbox. Inside this lunchbox, you can put different food items (containers) like a sandwich, a juice box, and a fruit cup. These items are meant to be eaten together, and you carry them in the same lunchbox.
 

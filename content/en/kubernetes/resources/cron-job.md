@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1040
-toc: false
+toc: true
 ---
 
 A CronJob is an API resource that allows you to schedule and automate the execution of tasks or jobs at specified time intervals. It is similar to the cron utility in Unix-like operating systems. With CronJobs, you can define a schedule for running a job or a series of jobs inside a Kubernetes cluster.

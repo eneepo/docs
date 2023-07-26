@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1010
-toc: false
+toc: true
 ---
 A Replication Controller (often abbreviated as RC) is an older, now-deprecated resource used for ensuring a specified number of replicas of a pod are running in a cluster. It is a lower-level concept compared to ReplicaSets, and it has largely been replaced by [ReplicaSets]({{< ref "/kubernetes/resources/replica-set.md" >}} "ReplicaSets")  and [Deployments]({{< ref "/kubernetes/resources/deployment.md" >}} "Deployments") for managing pod replication and scaling.
 

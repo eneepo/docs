@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1025
-toc: false
+toc: true
 ---
 Kubernetes starts with four initial namespaces:
 

@@ -10,7 +10,7 @@ menu:
   kubernetes:
     parent: "resources"
 weight: 1035
-toc: false
+toc: true
 ---
 
 A batch job is a way to run a workload that is designed to complete a specific task and then terminate. It is often used for running tasks such as data processing, batch computations, or one-time administrative tasks. Batch jobs in Kubernetes ensure that a specified number of parallel tasks are completed successfully.
