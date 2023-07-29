@@ -8,7 +8,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "services"
+    parent: "networking"
 weight: 1015
 toc: true
 ---

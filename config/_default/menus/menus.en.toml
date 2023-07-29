@@ -19,10 +19,10 @@
   parent = "kubernetes"
 
 [[main]]
-  name = "Services"
+  name = "Networking"
   weight = 30
-  identifier = "services"
-  url = "/kubernetes/services"
+  identifier = "networking"
+  url = "/kubernetes/networking"
   parent = "kubernetes"
 
 [[main]]
