@@ -5,6 +5,9 @@ date: 2023-07-29T17:34:44Z
 lastmod: 2023-07-29T17:34:44Z
 draft: false
 images: []
+menu:
+  docs:
+    parent: "ingress"
 type: docs
 weight: 1020
 toc: true
