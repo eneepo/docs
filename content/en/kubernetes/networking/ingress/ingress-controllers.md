@@ -1,22 +1,17 @@
 ---
-title: "Ingress"
+title: "Ingress Controllers"
 description: ""
 date: 2023-07-29T17:34:44Z
 lastmod: 2023-07-29T17:34:44Z
 draft: false
 images: []
 type: docs
-menu:
-  kubernetes:
-    parent: "networking"
 weight: 1020
 toc: true
 ---
 An Ingress Controller is a component responsible for managing and fulfilling ingress rules defined in the Ingress resource. It acts as a reverse proxy and load balancer, enabling external access to services running within the Kubernetes cluster. The Ingress Controller listens to changes in the Ingress resources and configures the underlying load balancer or other networking components accordingly to route incoming traffic to the appropriate services.
 
-## Ingress Controllers
-
-### Comparison Table
+## Comparison Table
 Below is a comparison table for some popular Kubernetes ingress controllers:
 | **Feature** | **Nginx Ingress Controller** | **Traefik** | **HAProxy Ingress** | **Contour** | **Ambassador** | **Kong** |
 |---|---|---|---|---|---|---|
@@ -41,8 +36,8 @@ Below is a comparison table for some popular Kubernetes ingress controllers:
 | **Cloud Provider Support** | Yes | Yes | No | Yes | Yes | Yes |
 {.table-sm}
 
-### Deploying Ingress Controllers
-#### Nginx
+## Deploying Ingress Controllers
+### Nginx
 This is one of the most widely used Ingress Controllers. It uses the Nginx web server as a reverse proxy to manage the incoming traffic.
 
 The Nginx Ingress Controller has its own Deployment and Service resources to manage the controller's pods and expose them as a service in the cluster.
@@ -108,7 +103,7 @@ Apply the configuration to your cluster:
 kubectl apply -f nginx-ingress-controller.yaml
 ```
 
-#### Traefik
+### Traefik
 Another popular Ingress Controller that is known for its simplicity and ease of use. It also supports dynamic configuration and integrates well with various cloud providers.
 
 To use Traefik as your ingress controller, you need to deploy it in your Kubernetes cluster and configure it to listen for ingress resources. Below, an example of how to deploy Traefik in Kubernetes is provided.
@@ -158,7 +153,7 @@ Apply the deployment using the following command:
 kubectl apply -f traefik-ingress-controller.yaml
 ```
 
-#### HAProxy Ingress
+### HAProxy Ingress
 HAProxy is a high-performance TCP/HTTP load balancer, and the HAProxy Ingress Controller leverages its capabilities to manage ingress traffic.
 
 To deploy the HAProxy Ingress Controller in your Kubernetes cluster, you'll need to create a deployment and a service. Below are the example YAML files for deploying HAProxy Ingress Controller.
@@ -208,10 +203,10 @@ Apply the deployment using the following command:
 kubectl apply -f haproxy-ingress-controller.yaml
 ```
 
-#### Contour
+### Contour
 Built on top of Envoy Proxy, Contour provides advanced features and is well-suited for large-scale and complex setups.
 
-#### Istio
+### Istio
 Although primarily known as a service mesh, Istio can also function as an Ingress Controller, offering advanced traffic management features.
 
 Each of these controllers has its own configuration and setup process. When setting up an Ingress Controller, you need to deploy the controller itself as a separate component within the cluster. The controller watches for changes in the Ingress resources and configures the necessary load balancing and routing rules accordingly. Depending on the Ingress Controller you choose, the setup and configuration may vary slightly.
