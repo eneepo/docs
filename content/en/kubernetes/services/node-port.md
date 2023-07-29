@@ -14,13 +14,14 @@ toc: true
 ---
 A NodePort service exposes the service on a static port on each node's IP. This allows the service to be accessed from outside the cluster using `NodeIP:NodePort`. It is useful when you need to expose a service externally and do not want to use an external load balancer.
 
+## Delcarative
 Below is an example YAML file for a NodePort service along with comments explaining each section:
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nodeport-service     # The name of the service
+  name: my-nodeport-service    # The name of the service
 spec:
   selector:
     app: my-app                # Selectors to identify the pods belonging to this service
@@ -29,15 +30,25 @@ spec:
       port: 80                 # Port on the NodePort service that will be exposed
       targetPort: 8080         # Port on the pods that the service will route traffic to
       nodePort: 30080          # Port on each node that the service will be accessible from
-  type: NodePort              # The type of service, in this case, it's NodePort
+  type: NodePort               # The type of service, in this case, it's NodePort
 ```
 
-In this example, the service is named `my-nodeport-service`. It uses the selector `app: my-app` to identify the pods associated with this service. Any pod with the label `app: my-app` will be part of this service.
+## Imperative
+Now, here's the imperative command to create the same NodePort service:
 
-The service exposes port 80 on each node's IP, and any traffic sent to this port will be forwarded to port 8080 on the pods that have the label `app: my-app`.
+```bash
+kubectl create service nodeport my-nodeport-service --tcp=80:8080 --node-port=30080 --selector=app=my-app
+```
 
-The `nodePort` field specifies the static port number (in this example, 30080) on each node that will be used to access the service externally. This port number must be in the valid range (30000-32767) specified for NodePort services.
+Explanation of the command:
 
-Note that the external access will be possible through any node's IP address, followed by the specified `nodePort` (e.g., `NodeIP:30080`).
+- `kubectl create service nodeport`: This part of the command tells Kubernetes to create a NodePort service.
+- `my-nodeport-service`: The name given to the service.
+- `--tcp=80:8080`: Specifies that incoming traffic on port 80 of the service should be forwarded to port 8080 on the pods.
+- `--node-port=30080`: Specifies the static port on each node to access the service from outside the cluster.
+- `--selector=app=my-app`: Sets the selector to identify the pods that should be part of this service. Replace `app=my-app` with the appropriate label selector for your pods.
 
-Keep in mind that using a NodePort service may expose your application to the public internet directly, and you might want to consider additional security measures like network policies or using an Ingress controller if you need more advanced routing capabilities.
+### Generating the yaml file
+```bash
+kubectl get service my-nodeport-service --dry-run=client -o yaml > my-nodeport-service.yaml
+```
