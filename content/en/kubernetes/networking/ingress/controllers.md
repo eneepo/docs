@@ -40,13 +40,13 @@ Below is a comparison table for some popular Kubernetes ingress controllers:
 | **Cloud Provider Support** | Yes | Yes | No | Yes | Yes | Yes |
 {.table-sm}
 
-## Deploying Ingress Controllers
+## Popular Ingress Controllers
 ### Nginx
 This is one of the most widely used Ingress Controllers. It uses the Nginx web server as a reverse proxy to manage the incoming traffic.
 
-The Nginx Ingress Controller has its own Deployment and Service resources to manage the controller's pods and expose them as a service in the cluster.
+Nginx controller has different options that can be used to customise the way it works, like adding headers or rewrites. The options can be seen in the [Nginx Ingress Controller Documentation](https://kubernetes.github.io/ingress-nginx/examples/)
 
-Create a file named `nginx-ingress-controller.yaml` and add the following content:
+The Nginx Ingress Controller has its own Deployment and Service resources to manage the controller's pods and expose them as a service in the cluster. To deploy nginx ingress controller,  create a file named `nginx-ingress-controller.yaml` and add the following content:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment

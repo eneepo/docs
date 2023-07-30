@@ -15,6 +15,7 @@ toc: true
 
 There are several kinds of Ingress Resources that you can use to configure and manage the routing of incoming traffic to your services. Each kind of Ingress Resource provides different capabilities and features to suit various use cases. Let's go through some common types of Ingress Resources with example YAML files for each:
 
+Nginx controller has different options that can be used to customise the way it works, like adding headers or rewrites. The options can be seen in the [Nginx Ingress Controller Documentation](https://kubernetes.github.io/ingress-nginx/examples/) 
 ## Examples
 ### Basic Ingress Resource
 
