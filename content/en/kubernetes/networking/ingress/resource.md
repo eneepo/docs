@@ -9,12 +9,13 @@ menu:
   docs:
     parent: "ingress"
 type: docs
-weight: 105
+weight: 1035
 toc: true
 ---
 
 There are several kinds of Ingress Resources that you can use to configure and manage the routing of incoming traffic to your services. Each kind of Ingress Resource provides different capabilities and features to suit various use cases. Let's go through some common types of Ingress Resources with example YAML files for each:
 
+## Examples
 ### Basic Ingress Resource
 
 The basic Ingress resource defines simple host-based routing rules. It allows you to route traffic based on the requested hostname and path.

@@ -9,9 +9,10 @@ menu:
   docs:
     parent: "ingress"
 type: docs
-weight: 100
+weight: 1031
 toc: true
 ---
+
 An Ingress Controller is a component responsible for managing and fulfilling ingress rules defined in the Ingress resource. It acts as a reverse proxy and load balancer, enabling external access to services running within the Kubernetes cluster. The Ingress Controller listens to changes in the Ingress resources and configures the underlying load balancer or other networking components accordingly to route incoming traffic to the appropriate services.
 
 ## Comparison Table

@@ -9,6 +9,7 @@ menu:
   docs:
     parent: "networking"
     identifier: "ingress"
-weight: 200
+type: docs
+weight: 1030
 toc: true
 ---
