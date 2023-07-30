@@ -13,7 +13,7 @@ weight: 1040
 toc: true
 ---
 
-`NetworkPolicies` are used to control the network traffic between different pods in a cluster. They allow you to define rules for allowing or denying incoming **Ingress** and outgoing **Egress** network traffic to and from pods that match certain criteria. `NetworkPolicies` are implemented using labels and selectors to target specific pods.
+NetworkPolicies are used to control the network traffic between different pods in a cluster. They allow you to define rules for allowing or denying incoming **Ingress** and outgoing **Egress** network traffic to and from pods that match certain criteria. NetworkPolicies are implemented using labels and selectors to target specific pods.
 
 ## Ingress
 Ingress network policies control the incoming network traffic to pods. They define the rules for allowing or denying traffic from other pods or external sources into the selected pods. Ingress rules are evaluated for incoming traffic to the pods that match the NetworkPolicy's pod selector.

@@ -26,6 +26,13 @@
   parent = "kubernetes"
 
 [[main]]
+  name = "Storage"
+  weight = 40
+  identifier = "storage"
+  url = "/kubernetes/storage"
+  parent = "kubernetes"
+
+[[main]]
   name = "Cheatsheets"
   weight = 99
   identifier = "cheatsheets"
