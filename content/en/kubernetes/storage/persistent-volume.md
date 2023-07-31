@@ -9,14 +9,48 @@ type: docs
 menu:
   kubernetes:
     parent: "storage"
-weight: 1005
+weight: 1010
 toc: true
 ---
 
 In Kubernetes, a `PersistentVolume` (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a way to decouple storage provision from the lifecycle of pods that use the storage. PVs are used to store data in a durable and independent way, and they exist outside the lifecycle of pods. Pods can claim a PV using a `PersistentVolumeClaim` (PVC), and Kubernetes ensures that the same PV is mounted to the pod if the PVC requests it.
 
-Here's an example of a PersistentVolume YAML file:
+## Roles and Responsibilities:
+  - A Persistent Volume represents a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using a storage class.
+  - PVs are provisioned independently of any specific pod and exist as a cluster-level resource.
+  - PVs have a lifecycle separate from pods, meaning they persist data even if the pods using them are deleted or rescheduled.
+  - Administrators or automation tools are responsible for managing PVs, which includes provisioning, resizing, and reclaiming the storage.
+  - PVs have various properties such as capacity, access modes, storage class, reclaim policy, etc., which define how they can be used and reclaimed.
+  - Pods can claim a PV by creating a Persistent Volume Claim (PVC) that matches the PV's specifications.
 
+In Kubernetes, a Persistent Volume (PV) resource is used to represent a piece of storage in the cluster that is provisioned independently of any specific pod. The PV provides a way to decouple storage provision from the lifecycle of pods using that storage. Let's explore the fields present in the PV resource:
+
+## spec
+### accessModes
+  - `accessModes` is a required field that specifies the access modes the volume allows. It defines how the volume can be mounted by pods that use the corresponding Persistent Volume Claim (PVC).
+  - It can have one or more of the following values:
+    - `ReadWriteOnce` (RWO): The volume can be mounted as read-write by a single node.
+    - `ReadOnlyMany` (ROX): The volume can be mounted read-only by many nodes.
+    - `ReadWriteMany` (RWX): The volume can be mounted as read-write by many nodes (not supported by all volume types).
+  - The choice of access modes depends on your application's requirements and the capabilities of the underlying storage system.
+
+### persistentVolumeReclaimPolicy
+  - `persistentVolumeReclaimPolicy` is an optional field that specifies what should happen to the PV's data when the corresponding Persistent Volume Claim (PVC) is deleted or released.
+  - It can have one of the following values:
+    - `Retain`: When a PVC is deleted or released, the associated PV's data will be retained. The PV will not be deleted, and the data will remain intact, allowing administrators to manually recover the data if needed.
+    - `Delete`: When a PVC is deleted or released, the associated PV's data will be deleted as well. The PV will be removed from the cluster, and the underlying storage resources will be released.
+    - `Recycle`: This value has been deprecated and is no longer recommended for use. It was previously used for dynamic provisioning of volumes, where the PV's data was deleted, and the PV was made available for reuse by other PVCs.
+
+### storageClassName
+  - `storageClassName` is an optional field that specifies the name of the Storage Class associated with the PV.
+  - The Storage Class defines the provisioning parameters and characteristics of the PV, such as the type of storage, access modes, and other storage-related parameters.
+  - If a PV has a `storageClassName` defined, it means it was provisioned dynamically based on the Storage Class. If it's empty, the PV is statically provisioned.
+
+### hostPath
+  - It is a local directory path on the node's filesystem where the volume data will be stored.
+  - This is a specific type of PV that might not be suitable for production use since it relies on the node's local storage, which is not shared across the cluster and can lead to data loss if the node fails.
+
+## Example
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -33,22 +67,10 @@ spec:
     path: /data/persistent_volume
 ```
 
-Explanation of the fields in the YAML file:
-- `metadata.name`: The name of the PersistentVolume.
-- `spec.capacity.storage`: The size of the volume, in this case, 5 gigabytes.
-- `spec.accessModes`: The access modes the volume allows. Multiple modes can be specified (comma-separated), but not all combinations are supported. Common modes include:
-  - `ReadWriteOnce`: The volume can be mounted as read-write by a single node.
-  - `ReadOnlyMany`: The volume can be mounted read-only by many nodes.
-  - `ReadWriteMany`: The volume can be mounted as read-write by many nodes (not supported by all volume types).
-- `spec.persistentVolumeReclaimPolicy`: This field specifies what happens to the PV when the corresponding PVC is deleted. Possible values are `Retain`, `Recycle`, and `Delete`. In this example, it's set to `Retain` which means the PV will be left as-is even after the PVC is deleted, and an administrator needs to take action manually.
-- `spec.storageClassName`: The Storage Class name to be used for dynamically provisioning this volume. If not specified, it becomes a statically provisioned volume.
-- `spec.hostPath.path`: The local directory path on the node's filesystem where the volume data will be stored. This field is specific to the hostPath volume type and should not be used in a production environment.
-
-
 ## Commands
 
 ### General
-`kubectl` provides several commands to work with Persistent Volumes (PVs) in Kubernetes. Here are some of the most commonly used `kubectl` commands related to Persistent Volumes:
+Here are some of the most commonly used `kubectl` commands related to Persistent Volumes:
 
 ```bash
 kubectl get persistentvolumes
@@ -59,15 +81,8 @@ kubectl apply -f pv.yaml
 ```
 
 ### Imperative
-Now, let's see an example of how to create the same PersistentVolume using the imperative command:
+Example of how to create the same PersistentVolume using the imperative command:
 
 ```bash
 kubectl create pv example-pv --capacity=5Gi --access-modes=ReadWriteOnce --persistent-volume-reclaim-policy=Retain --storage-class=slow --host-path=/data/persistent_volume
 ```
-
-Different types of `accessModes`:
-- `ReadWriteOnce`: The volume can be mounted as read-write by a single node.
-- `ReadOnlyMany`: The volume can be mounted read-only by many nodes.
-- `ReadWriteMany`: The volume can be mounted as read-write by many nodes.
-
-These access modes define how the volume can be mounted by pods, and the choice depends on the specific requirements of your application. Keep in mind that not all storage types support all access modes, so you need to choose an appropriate storage class that provides the desired access mode based on your application's needs.

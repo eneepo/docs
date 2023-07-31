@@ -9,10 +9,45 @@ type: docs
 menu:
   kubernetes:
     parent: "storage"
-weight: 1010
+weight: 1015
 toc: true
 ---
 A Persistent Volume Claim (PVC) is a Kubernetes resource that allows a pod to request a specific amount of storage from a Persistent Volume (PV). PVCs provide a way to abstract the underlying storage implementation from the pod, making it easier to manage and migrate data when needed.
+
+## Roles and Responsibilities:
+  - A Persistent Volume Claim is a request for storage by a pod. It acts as a request for a specific amount of storage with specific characteristics.
+  - PVCs are used by pods to claim a suitable PV based on their storage requirements (e.g., capacity, access mode).
+  - PVCs are namespaced resources, meaning they are created within a specific namespace and only exist within that namespace.
+  - When a pod requests storage via a PVC, Kubernetes looks for an available PV that matches the PVC's requirements (capacity, access modes, storage class, etc.).
+  - If a suitable PV is found, it is bound to the PVC, and the pod can use the storage defined in the PV.
+  - If no suitable PV is available, some storage classes can dynamically provision a PV that matches the PVC's requirements.
+
+## spec
+### accessModes
+The `accessModes` field in a Persistent Volume (PV) specifies the access modes that are allowed for the storage volume. It defines how the volume can be mounted by pods that use the corresponding Persistent Volume Claim (PVC).
+
+The `accessModes` field can have one or more of the following access mode values:
+
+1. `ReadWriteOnce` (RWO): This access mode allows the volume to be mounted as read-write by a single node. It means that the volume can be attached to and used by only one node in the cluster at a time. This mode is suitable for scenarios where data needs to be shared between pods running on the same node.
+
+2. `ReadOnlyMany` (ROX): This access mode allows the volume to be mounted as read-only by multiple nodes. It means that multiple pods running on different nodes in the cluster can read data from the volume, but none of them can write to it. This mode is suitable for scenarios where multiple pods need to access the same data in a read-only manner.
+
+3. `ReadWriteMany` (RWX): This access mode allows the volume to be mounted as read-write by multiple nodes. It means that multiple pods running on different nodes in the cluster can both read from and write to the volume simultaneously. However, not all storage types support this mode, so it's essential to verify that your storage class and underlying storage system support it before using this access mode.
+
+### persistentVolumeReclaimPolicy
+The `persistentVolumeReclaimPolicy` is a property of Persistent Volumes (PVs) in Kubernetes. It specifies what should happen to the PV's data when the corresponding Persistent Volume Claim (PVC) is deleted or released.
+
+There are three possible options for the `persistentVolumeReclaimPolicy`:
+
+1. `Retain`: When a PVC is deleted or released, the associated PV's data will be retained. The PV will not be deleted, and the data will remain intact. This allows administrators to manually recover the data if needed. For critical data that needs to be preserved even after the PVC is deleted, you should use the `Retain` policy. 
+
+2. `Delete`: When a PVC is deleted or released, the associated PV's data will be deleted as well. The PV will be removed from the cluster, and the underlying storage resources will be released. On the other hand, for non-critical or temporary data, the `Delete` policy might be more appropriate, as it allows the storage resources to be reclaimed when no longer needed.
+
+3. `Recycle`: This option has been deprecated and is no longer recommended for use. It was previously used for dynamic provisioning of volumes, where the PV's data was deleted, and the PV was made available for reuse by other PVCs.
+
+The default value for `persistentVolumeReclaimPolicy` is typically set by the storage system or the dynamic provisioner, depending on the storage class used for the Persistent Volume.
+
+Keep in mind that the `persistentVolumeReclaimPolicy` only applies to dynamically provisioned PVs or statically provisioned PVs that were requested by a PVC. For PVs not associated with a PVC, their reclaim policy is typically determined by the administrator's manual intervention.
 
 ## Example
 ```yaml
@@ -26,21 +61,10 @@ spec:
   resources:
     requests:
       storage: 3Gi
+  # The Storage Class name to be used for dynamically provisioning this claim. If not specified, it becomes a statically provisioned claim.
   storageClassName: slow
 ```
-
-Explanation of the fields in the YAML file:
-- `metadata.name`: The name of the Persistent Volume Claim.
-- `spec.accessModes`: The access modes the claim requests. Multiple modes can be specified (comma-separated), but not all combinations are supported. Common modes include:
-  - `ReadWriteOnce`: The claim can be mounted as read-write by a single node.
-  - `ReadOnlyMany`: The claim can be mounted read-only by many nodes.
-  - `ReadWriteMany`: The claim can be mounted as read-write by many nodes (not supported by all volume types).
-- `spec.resources.requests.storage`: The amount of storage requested for the claim. In this example, the claim requests 3 gigabytes of storage.
-- `spec.storageClassName`: The Storage Class name to be used for dynamically provisioning this claim. If not specified, it becomes a statically provisioned claim.
-
-With this Persistent Volume Claim, the pod can use the storage requested in the claim. If the cluster has a Persistent Volume that meets the criteria (requested storage, access modes, etc.) defined in the PVC, Kubernetes will bind the claim to that specific PV. If there is no suitable PV available, Kubernetes may dynamically provision one based on the Storage Class defined in the PVC.
-
-To use this PVC in a pod, you would reference it in the pod's YAML file under the `volumes` section. For example:
+In the following example, the pod is using the `example-pvc` claim through the `data-volume` volume. The data stored in `/data` inside the pod will be persistent, and if the pod is rescheduled or deleted, it can reclaim the same data from the bound PV associated with the PVC.
 
 ```yaml
 apiVersion: v1
@@ -60,11 +84,9 @@ spec:
           mountPath: /data
 ```
 
-In this example, the pod is using the `example-pvc` claim through the `data-volume` volume. The data stored in `/data` inside the pod will be persistent, and if the pod is rescheduled or deleted, it can reclaim the same data from the bound PV associated with the PVC.
-
 ## Commands
 ### General
-Sure! Here's a cheatsheet of `kubectl` commands related to Persistent Volume Claims (PVCs):
+Remember to replace `<claim-name>`, `<access-modes>`, `<storage-class>`, and `<storage-size>` with the appropriate values for your PVC. The commands in this cheatsheet will help you manage and interact with Persistent Volume Claims in your Kubernetes cluster.
 
 ```bash
 kubectl create persistentvolumeclaim <claim-name> --access-modes=<access-modes> --storage-class=<storage-class> --request-storage=<storage-size>
@@ -76,7 +98,6 @@ kubectl apply -f <pvc_yaml_file>
 kubectl describe persistentvolumeclaim <claim-name> | grep "Volume:"  # Describe the Persistent Volume associated with a PVC
 kubectl describe persistentvolumeclaim <claim-name> | grep "Bound"    # Check the status of the Persistent Volume Binding
 ```
-Remember to replace `<claim-name>`, `<access-modes>`, `<storage-class>`, and `<storage-size>` with the appropriate values for your PVC. The commands in this cheatsheet will help you manage and interact with Persistent Volume Claims in your Kubernetes cluster.
 
 ### Imperative
 You can create a Persistent Volume Claim (PVC) using the imperative `kubectl` command. Here's the imperative command to create a PVC:
@@ -84,26 +105,3 @@ You can create a Persistent Volume Claim (PVC) using the imperative `kubectl` co
 ```bash
 kubectl create persistentvolumeclaim <claim-name> --access-modes=<access-modes> --storage-class=<storage-class> --request-storage=<storage-size>
 ```
-
-Let's break down the command and its parameters:
-
-- `<claim-name>`: This is the name you want to give to the Persistent Volume Claim. Choose a unique and descriptive name for your claim.
-
-- `--access-modes`: This specifies the access modes the claim requests. You can use one or more of the following access modes (separated by commas):
-  - `ReadWriteOnce`: The claim can be mounted as read-write by a single node.
-  - `ReadOnlyMany`: The claim can be mounted read-only by many nodes.
-  - `ReadWriteMany`: The claim can be mounted as read-write by many nodes (not supported by all volume types).
-
-- `--storage-class`: This specifies the name of the Storage Class to be used for dynamically provisioning the claim. If you want to use a specific Storage Class, provide its name here. If you omit this parameter, the claim will be bound to a statically provisioned Persistent Volume.
-
-- `--request-storage`: This specifies the amount of storage to request for the claim. Use a valid size unit (e.g., Gi for gigabytes, Mi for megabytes). For example, to request 5 gigabytes, use `5Gi`.
-
-Here's an example of how to create a Persistent Volume Claim using the imperative command:
-
-```bash
-kubectl create persistentvolumeclaim example-pvc --access-modes=ReadWriteOnce --storage-class=slow --request-storage=3Gi
-```
-
-In this example, we are creating a PVC named `example-pvc` with the access mode set to `ReadWriteOnce`, requesting 3 gigabytes of storage, and using the `slow` Storage Class for dynamic provisioning.
-
-Keep in mind that using imperative commands is convenient for quick tasks, but it's generally recommended to define your resources in YAML files (declarative approach) to ensure better version control, traceability, and reproducibility of your Kubernetes configurations.
