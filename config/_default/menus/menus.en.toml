@@ -1,4 +1,17 @@
 [[main]]
+  name = "ELK"
+  weight = 30
+  identifier = "elk"
+  url = "/elk/"
+
+[[main]]
+  name = "Elasticsearch"
+  weight = 10
+  identifier = "elasticsearch"
+  url = "/elk/elasticsearch"
+  parent = "elk"
+
+[[main]]
   name = "Kubernetes"
   weight = 30
   identifier = "kubernetes"
