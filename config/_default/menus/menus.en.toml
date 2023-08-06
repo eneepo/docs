@@ -8,7 +8,7 @@
   name = "Elasticsearch"
   weight = 10
   identifier = "elasticsearch"
-  url = "/elk/elasticsearch"
+  url = "/kubernetes/Elasticsearch"
   parent = "elk"
 
 [[main]]

@@ -14,6 +14,15 @@ toc: true
 ---
 
 
+
+## Match All Query
+Retrieve all documents from an index.
+```json
+{
+  "match_all": {}
+}
+```
+
 ## Match Query
 Search for documents containing a specific term across fields.
 ```json
@@ -53,15 +62,123 @@ Combine various query clauses using boolean logic.
 
 ## Term Query
 Match documents containing an exact term in a field.
+
+Note: Don't use term level queries on `text` fields
+  * Use `keyword` mapping instead of `text` mapping. Term level queries are not analyzed and are therefore used for exact matching.
+  * Term level queries are used for exact matching(filtering)
+  * Term level queries are not analyzed
+    * The search value is used exactly as is for inverted index lookups
+    * Searches are therefore case sensitive
+    * The entire terms must macth
+      * "Nike" doesn't match "Nike, Inc."
+      * A quesry for "nike" workds fine, but "Nike" doesn't match anything
+  * Can be used with multiple data types
+    * Don't use them for `text` data type
 ```json
 {
   "term": {
     "field_name": "exact_term"
   }
 }
+```
+**Examples**
 
+1. Keywords
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "tags.keyword": "Vegtable"
+    }
+  }
+}
+```
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "tags.keyword": {
+        "value": "vegtable",
+        "case_insensitive": true
+      }
+    }
+  }
+}
+```
+2. Booleans
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "is_active": true
+    }
+  }
+}
 ```
 
+3. Numbers
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "is_stock": 1
+    }
+  }
+}
+```
+
+4. Dates
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "created": "2022/08/06"
+    }
+  }
+}
+```
+
+
+5. Timestamps
+```json
+GET /products/_search
+{
+  "query": {
+    "term": {
+      "created": "2022/08/06 19:42:40
+    }
+  }
+}
+```
+
+## Terms Query
+Search for documents with a field matching multiple values.
+```json
+{
+  "terms": {
+    "field_name": ["term1", "term2"]
+  }
+}
+```
+**Examples**
+1. This query matches products tagged as either "Soup" or "Milk" or both.
+```json
+GET /products/_search
+{
+  "query": {
+    {
+      "terms": {
+        "tags.keyword": ["Soup", "Milk"]
+      }
+    }
+  }
+}
+```
 ## Range Query
 Filter documents within a specified numeric or date range.
 ```json
@@ -156,26 +273,6 @@ Filter documents with a specific field absent.
       }
     }
   }
-}
-
-```
-
-## Terms Query
-Search for documents with a field matching multiple values.
-```json
-{
-  "terms": {
-    "field_name": ["term1", "term2"]
-  }
-}
-
-```
-
-## Match All Query
-Retrieve all documents from an index.
-```json
-{
-  "match_all": {}
 }
 
 ```
