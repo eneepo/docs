@@ -1,5 +1,5 @@
 ---
-title: "kubectl"
+title: "Kubectl Cheatsheet"
 description: ""
 lead: ""
 date: 2023-07-16T09:29:02+02:00
@@ -9,7 +9,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "cheatsheets"
+    parent: "extra"
 weight: 100
 toc: true
 ---
