@@ -10,7 +10,7 @@ type: docs
 menu:
   kubernetes:
     parent: "extra"
-weight: 100
+weight: 1110
 toc: true
 ---
 ## Cluster Information
