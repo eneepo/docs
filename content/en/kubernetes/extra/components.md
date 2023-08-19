@@ -14,7 +14,7 @@ toc: true
 ---
 Kubernetes is comprised of various components that work together to provide its core functionality. These components can be categorized into several groups:
 
-1. **Control Plane Components**:
+## Control Plane Components
 
    - **kube-apiserver**: This is the central management component that exposes the Kubernetes API. It serves as the entry point for all administrative tasks, including deploying, configuring, and managing applications.
 
@@ -26,7 +26,7 @@ Kubernetes is comprised of various components that work together to provide its 
 
    - **cloud-controller-manager**: An optional component that interacts with the underlying cloud infrastructure (e.g., AWS, GCP, Azure) to manage resources like Load Balancers and Persistent Volumes.
 
-2. **Node Components**:
+## Node Components
 
    - **kubelet**: The primary agent running on each node in the cluster. It communicates with the control plane and ensures that containers are running in a pod. It also performs various health checks.
 
@@ -34,7 +34,7 @@ Kubernetes is comprised of various components that work together to provide its 
 
    - **Container Runtime**: The software responsible for running containers, such as Docker, containerd, or CRI-O. Kubernetes supports various container runtimes.
 
-3. **Add-ons**:
+## Add-ons
 
    - **DNS**: A DNS server that provides DNS-based service discovery for services in the cluster.
 
@@ -44,10 +44,13 @@ Kubernetes is comprised of various components that work together to provide its 
 
    - **Heapster (deprecated)**: Used for cluster-wide monitoring and performance analysis. In recent versions, this has been replaced by the Metrics Server and external monitoring solutions.
 
-4. **Networking Plugins**: Kubernetes supports various networking plugins that enable communication between pods across nodes. Examples include Calico, Flannel, and Weave.
+## Networking Plugins
+Kubernetes supports various networking plugins that enable communication between pods across nodes. Examples include Calico, Flannel, and Weave.
 
-5. **Storage Plugins**: Kubernetes can manage storage volumes and supports different storage solutions like AWS EBS, GCE PD, and network-attached storage.
+## Storage Plugins
+Kubernetes can manage storage volumes and supports different storage solutions like AWS EBS, GCE PD, and network-attached storage.
 
-6. **Authentication and Authorization**: These are not standalone components but are integral to Kubernetes. They control who can access the cluster and what actions they can perform. Kubernetes can integrate with various identity providers and access control mechanisms.
+## Authentication and Authorization
+These are not standalone components but are integral to Kubernetes. They control who can access the cluster and what actions they can perform. Kubernetes can integrate with various identity providers and access control mechanisms.
 
 These components work together to provide the core features and functionality of Kubernetes, allowing you to manage and scale containerized applications efficiently and reliably. Note that the specific components and their configurations can vary depending on the Kubernetes distribution and the environment in which it is deployed.
