@@ -8,7 +8,7 @@
   name = "Elasticsearch"
   weight = 10
   identifier = "elasticsearch"
-  url = "/kubernetes/Elasticsearch"
+  url = "/elk/elasticsearch"
   parent = "elk"
 
 [[main]]
@@ -22,6 +22,13 @@
   weight = 10
   identifier = "resources"
   url = "/kubernetes/resources"
+  parent = "kubernetes"
+
+[[main]]
+  name = "Authorizations"
+  weight = 11
+  identifier = "auth"
+  url = "/kubernetes/auth"
   parent = "kubernetes"
 
 [[main]]
