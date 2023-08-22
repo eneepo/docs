@@ -1,5 +1,5 @@
 ---
-title: "Architecture"
+title: "Components"
 description: ""
 date: 2023-08-22T06:42:47Z
 lastmod: 2023-08-22T06:42:47Z

@@ -8,7 +8,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "architecture"
+    parent: "components"
 weight: 1100
 toc: true
 ---
@@ -120,7 +120,7 @@ In summary, `crictl` is a versatile command-line utility for managing containers
 #### Use Cases
 Kubernetes administrators and developers often use `crictl` for debugging and troubleshooting container-related issues on Kubernetes nodes. It's especially helpful when you need to inspect containers and pods running on the cluster directly from the node.
 
-#### Examples
+#### Commands
 ```bash
 # List all containers
 crictl ps
@@ -164,7 +164,7 @@ crictl rm <container_id>
 #### Use Cases
 `nrdctl` is often used by users and organizations that are familiar with Docker and want to maintain a Docker-like experience when working with containers in Kubernetes, even when using Containerd as the runtime.
 
-#### Examples
+#### Commands
 ```bash
 # List available resources
 nrdctl list
