@@ -74,7 +74,7 @@ Each of these controllers operates independently and watches the Kubernetes API 
 
 ## Installation
 
-## Manual Installation
+### Manual Installation
 
 Manually installing the Kubernetes Controller Manager (`kube-controller-manager`) is not a common practice because Kubernetes components are typically installed and managed through cluster management tools like kubeadm, kops, or managed Kubernetes services provided by cloud providers. However, if you have a specific reason for manually installing it or need to do so for educational purposes, you can follow these general steps.
 
@@ -180,13 +180,12 @@ Remember that this is a simplified overview of the process. In a production envi
 ## Commands
 
 ```bash
-
 # View kube-controller-manager options (manual installation)
 cat /etc/systemd/system/kube-controller-manager.service
 
 # View kube-controller-manager options (kubeadm installation)
-cat /etc/systemd/system/kube-apiserver.service
+cat /etc/kubernetes/manifests/kube-controller-manager.yaml
 
-# View api-server options by listing the process on the master node and searching for kube-apiserver
+# View kube-contoller-manager options by listing the process on the master node and searching for kube-contoller-manager
 ps -aux | grep kube-contoller-manager
 ```

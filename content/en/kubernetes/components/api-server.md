@@ -48,6 +48,12 @@ The API server is a critical component that serves as the central management poi
 ## Commands
 
 ```bash
+# View kube-controller-manager options (manual installation)
+cat /etc/systemd/system/kube-apiserver.service
+
+# View kube-controller-manager options (kubeadm installation)
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+
 # View api-server options
 cat /etc/systemd/system/kube-apiserver.service
 
