@@ -1,5 +1,5 @@
 ---
-title: "Contoller Manager"
+title: "Kube Contoller Manager"
 description: ""
 date: 2023-08-25T16:55:42Z
 lastmod: 2023-08-25T16:55:42Z
@@ -9,7 +9,7 @@ type: docs
 menu:
   kubernetes:
     parent: "components"
-weight: 1400
+weight: 1210
 toc: true
 ---
 the `kube-controller-manager` is a critical component of Kubernetes that maintains the desired state of your cluster by continuously monitoring and managing various aspects of the cluster, such as node health, pod replication, and service discovery. It helps ensure that the desired state specified in your cluster configuration is continually maintained.

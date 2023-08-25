@@ -1,5 +1,5 @@
 ---
-title: "Api Server"
+title: "Kube Api Server"
 description: ""
 date: 2023-08-22T17:12:38Z
 lastmod: 2023-08-22T17:12:38Z
@@ -9,11 +9,13 @@ type: docs
 menu:
   kubernetes:
     parent: "components"
-weight: 1300
+weight: 1205
 toc: true
 ---
 
-The API server is a critical component that serves as the central management point and communication hub for the entire cluster. It acts as the front-end to the Kubernetes control plane and exposes the Kubernetes API, which allows users, administrators, and various Kubernetes components to interact with the cluster. Here are the key aspects of the API server:
+The API server is a critical component that serves as the central management point and communication hub for the entire cluster. It acts as the front-end to the Kubernetes control plane and exposes the Kubernetes API, which allows users, administrators, and various Kubernetes components to interact with the cluster. 
+
+## Responsibilities
 
 1. **API Endpoint**: The API server provides an HTTP(S) endpoint that clients use to interact with the Kubernetes cluster. This API is used for creating, updating, and deleting Kubernetes resources such as pods, services, and deployments. Clients can include command-line tools like `kubectl`, automation scripts, and other Kubernetes components.
 

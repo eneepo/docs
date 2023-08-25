@@ -9,13 +9,13 @@ type: docs
 menu:
   kubernetes:
     parent: "components"
-weight: 1400
+weight: 1215
 toc: true
 ---
 
 `kube-scheduler` is a critical component of Kubernetes that ensures the optimal placement of pods on nodes within a cluster, considering various constraints and factors to maintain application performance, resource utilization, and high availability. It plays a pivotal role in automating workload distribution in a Kubernetes environment.
 
-Here's how `kube-scheduler` works and what its responsibilities are:
+## Responsibilities
 
 1. **Pod Scheduling Request**: When a user or system administrator creates a pod deployment, replication controller, or other workload with a desired number of replicas, Kubernetes sends a pod scheduling request to the `kube-scheduler`.
 
