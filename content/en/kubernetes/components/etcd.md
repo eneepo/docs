@@ -100,11 +100,9 @@ Depending on how you set up your cluster, etcd is deployed differently. There ar
 
 Using `kubeadm` simplifies the installation of etcd within a Kubernetes cluster, as it takes care of many of the configuration details. This method is recommended for setting up Kubernetes clusters unless you have specific requirements that necessitate a manual installation of etcd.
 
-## `etcdctl`
+## Commands
 
 `etcdctl` is a command-line client tool for interacting with etcd clusters. It allows you to perform various operations on the etcd key-value store, such as setting keys, getting values, watching for changes, and more.
-
-### Commands
 
 For the complete list view [etcdctl documentation](https://etcd.io/docs/v3.4/dev-guide/interacting_v3/).
 

@@ -3,7 +3,7 @@ title: "Api Server"
 description: ""
 date: 2023-08-22T17:12:38Z
 lastmod: 2023-08-22T17:12:38Z
-draft: true
+draft: false
 images: []
 type: docs
 menu:
@@ -45,7 +45,7 @@ The API server is a critical component that serves as the central management poi
 
 10. **Extensions**: It provides a mechanism for extending the Kubernetes API with Custom Resource Definitions (CRDs). This enables users to define and manage custom resources beyond the built-in Kubernetes resource types.
 
-### Commands
+## Commands
 
 ```bash
 # View api-server options
