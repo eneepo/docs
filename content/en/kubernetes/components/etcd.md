@@ -27,6 +27,7 @@ Here are some key points about etcd in Kubernetes:
 5. **Backup and Disaster Recovery**: etcd data is critical for the stability and operation of a Kubernetes cluster. Therefore, it's essential to regularly back up etcd data and have disaster recovery plans in place.
 
 ## Installation
+
 Depending on how you set up your cluster, etcd is deployed differently. There are two common ways to install etcd: manually and using `kubeadm`, which is a popular tool for setting up Kubernetes clusters. 
 
 ### Manual Installation
@@ -87,22 +88,26 @@ Depending on how you set up your cluster, etcd is deployed differently. There ar
    ```
 
    - And to list all keys stored by Kubernetes, run:
+
    ```bash
    kubectl exec etcd-master -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 
-   --cacert /etc/kubernetes/pki/etcd/ca.crt 
-   --cert /etc/kubernetes/pki/etcd/server.crt
-   --key /etc/kubernetes/pki/etcd/server.key" 
+      --cacert /etc/kubernetes/pki/etcd/ca.crt 
+      --cert /etc/kubernetes/pki/etcd/server.crt
+      --key /etc/kubernetes/pki/etcd/server.key" 
    ```
-   - You must also specify path to certificate files so that ETCDCTL can authenticate to the ETCD API Server.
 
+   - You must also specify path to certificate files so that ETCDCTL can authenticate to the ETCD API Server.
 
 Using `kubeadm` simplifies the installation of etcd within a Kubernetes cluster, as it takes care of many of the configuration details. This method is recommended for setting up Kubernetes clusters unless you have specific requirements that necessitate a manual installation of etcd.
 
 ## `etcdctl`
+
 `etcdctl` is a command-line client tool for interacting with etcd clusters. It allows you to perform various operations on the etcd key-value store, such as setting keys, getting values, watching for changes, and more.
 
 ### Commands
+
 For the complete list view [etcdctl documentation](https://etcd.io/docs/v3.4/dev-guide/interacting_v3/).
+
 ```bash
 # Set a key-value pair in etcd
 etcdctl put <key> <value>

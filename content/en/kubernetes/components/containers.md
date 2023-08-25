@@ -14,6 +14,7 @@ toc: true
 ---
 
 ## CRI
+
 The Container Runtime Interface (CRI) in Kubernetes is an essential component that serves as an interface between Kubernetes and the container runtime that actually runs containers on a node in the cluster. The CRI was introduced to provide flexibility and compatibility between Kubernetes and various container runtimes, allowing Kubernetes to support multiple container runtimes seamlessly.
 
 Here's a breakdown of its key components:
@@ -35,6 +36,7 @@ By separating the CRI from the Kubernetes components and container runtimes, Kub
 In summary, the Container Runtime Interface (CRI) in Kubernetes is a crucial abstraction layer that standardizes interactions between Kubernetes and container runtimes, making it easier to support different runtimes and providing flexibility to Kubernetes users.
 
 ## Container Runtimes
+
 Two common container runtimes are `CRI-O` and `Containerd`. They have similar roles in the Kubernetes ecosystem, but there are some key differences between them. Here's a comparison of CRI-O and Containerd:
 
 1. **Focus and Design Philosophy**:
@@ -82,6 +84,7 @@ Here are some key points about Containerd and when Kubernetes uses it:
 In summary, Containerd is used in Kubernetes as one of the supported container runtimes, and it offers a balance between simplicity and functionality. Kubernetes users may choose to use Containerd when they prefer a straightforward, standards-compliant runtime that aligns well with Kubernetes' Container Runtime Interface (CRI).
 
 ### CRI-O
+
 CRI-O is an open-source container runtime that is designed specifically for Kubernetes. It's an alternative to other container runtimes like Docker or containerd. CRI-O is part of the Cloud Native Computing Foundation (CNCF) and aims to provide a lightweight and secure runtime environment for containers in Kubernetes clusters.
 
 Here are some key points about CRI-O in Kubernetes:
@@ -108,19 +111,23 @@ CRI-O and Containerd are both container runtimes that are designed to work with 
 In summary, `crictl` is a versatile command-line utility for managing containers and pods when using CRI-compatible runtimes like CRI-O and Containerd in Kubernetes. On the other hand, `nrdctl` is an alternative container runtime that provides Docker compatibility while using Containerd as the backend. The choice between them depends on your specific needs and familiarity with Docker-like interfaces.
 
 ### `crictl`
+
 `crictl` is a command-line interface (CLI) tool for interacting with container runtimes that implement the CRI, including CRI-O and Containerd. It provides a user-friendly way to manage containers and pods on a Kubernetes cluster.
 
 #### Features
-   - **Container Management**: `crictl` allows you to create, run, stop, and delete containers.
-   - **Image Management**: You can use `crictl` to pull, push, and list container images.
-   - **Pod Management**: It supports operations on pods, such as creating and listing pods.
-   - **Runtime Information**: You can retrieve runtime-specific information like container runtime status and version.
-   - **Logs and Attach**: It provides options to view container logs and attach to a running container for troubleshooting.
+
+- **Container Management**: `crictl` allows you to create, run, stop, and delete containers.
+- **Image Management**: You can use `crictl` to pull, push, and list container images.
+- **Pod Management**: It supports operations on pods, such as creating and listing pods.
+- **Runtime Information**: You can retrieve runtime-specific information like container runtime status and version.
+- **Logs and Attach**: It provides options to view container logs and attach to a running container for troubleshooting.
 
 #### Use Cases
+
 Kubernetes administrators and developers often use `crictl` for debugging and troubleshooting container-related issues on Kubernetes nodes. It's especially helpful when you need to inspect containers and pods running on the cluster directly from the node.
 
 #### Commands
+
 ```bash
 # List all containers
 crictl ps
@@ -154,17 +161,21 @@ crictl rm <container_id>
 ```
 
 ### `nrdctl`
+
 `nrdctl`, which stands for "Nerdctl," is not directly related to CRI-O or Containerd but is rather an alternative container runtime that aims to be a drop-in replacement for Docker. It provides a more Docker-compatible interface while still using Containerd under the hood.
 
 #### Features
-   - **Docker Compatibility**: `nrdctl` aims to be compatible with Docker commands and syntax, making it easier for users transitioning from Docker to Kubernetes.
-   - **Containerd Backend**: Underneath, `nrdctl` uses Containerd as the container runtime, providing a streamlined and compatible experience for Docker users.
-   - **OCI Compatibility**: It supports Open Container Initiative (OCI) standards for container images and runtimes.
+
+- **Docker Compatibility**: `nrdctl` aims to be compatible with Docker commands and syntax, making it easier for users transitioning from Docker to Kubernetes.
+- **Containerd Backend**: Underneath, `nrdctl` uses Containerd as the container runtime, providing a streamlined and compatible experience for Docker users.
+- **OCI Compatibility**: It supports Open Container Initiative (OCI) standards for container images and runtimes.
 
 #### Use Cases
+
 `nrdctl` is often used by users and organizations that are familiar with Docker and want to maintain a Docker-like experience when working with containers in Kubernetes, even when using Containerd as the runtime.
 
 #### Commands
+
 ```bash
 # List available resources
 nrdctl list
