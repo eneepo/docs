@@ -145,14 +145,6 @@ spec:
 
 ## Commands
 
-Certainly! Below is a Kubernetes `ResourceQuota` cheatsheet that provides you with essential `kubectl` commands and information for managing `ResourceQuota` objects:
-
-### Kubernetes ResourceQuota Cheatsheet
-
-**1. Create a ResourceQuota:**
-```bash
-Certainly! Here are comments for each of the provided `kubectl` commands:
-
 ```bash
 # Create a resource quota named "my-quota" with specified resource limits for CPU, memory, and pods.
 kubectl create resourcequota my-quota --hard=cpu=2,memory=4Gi,pods=10
