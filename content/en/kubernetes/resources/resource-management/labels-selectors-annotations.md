@@ -8,8 +8,8 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "configuration"
-weight: 1030
+    parent: "resource-management"
+weight: 1220
 toc: true
 ---
 ## Labels
@@ -30,9 +30,9 @@ metadata:
 ```
 
 ```shell
-$ k get pods --selector tier=frontend
-$ k get pods --selector tier=frontend,bu=finance,env=prod # all of the labels
-$ k get pods --selector tier=frontend  --selector bu=finance # any of
+kubectl get pods --selector tier=frontend
+kubectl get pods --selector tier=frontend,bu=finance,env=prod # all of the labels
+kubectl get pods --selector tier=frontend  --selector bu=finance # any of
 ```
 ## Annotations
 Annotations are similar to labels but provide additional information about an object. They are not used for selecting or filtering resources, but rather for attaching arbitrary metadata to an object. Annotations can be used to store descriptive information, build automation tools, or provide hints to other systems.
