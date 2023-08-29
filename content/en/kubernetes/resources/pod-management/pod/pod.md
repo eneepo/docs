@@ -126,7 +126,7 @@ Hello World printenv
 $ docker run --entrypoint sleep entrypoint-cmd 5
 ```
 
-### Kubernetes
+### Equivalents in Kubernetes
 In Kubernetes:
 * Use `command` for `ENTRYPOINT`
 * use `args` for `CMD`
@@ -157,6 +157,18 @@ spec:
 Running the above pod is simillar to running:
 ```bash
 $ docker run ubuntu-sleeper 10
+```
+
+#### Change `command` and `args` when creating pod
+
+```bash
+# Start the nginx pod using the default command, but use custom arguments (arg1 .. argN) for that command
+# kubectl run nginx --image=nginx -- <arg1> <arg2> ... <argN>
+$ kubectl run ubuntu-sleeper --image=ubuntu-sleeper-pod -- 5
+
+# Start the nginx pod using a different command and custom arguments
+# kubectl run nginx --image=nginx --command -- <cmd> <arg1> ... <argN>
+$ kubectl run ubuntu-sleeper --image=ubuntu-sleeper-pod --command -- echo "Hello World!"
 ```
 
 ## Commands
