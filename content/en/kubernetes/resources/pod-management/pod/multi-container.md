@@ -1,5 +1,5 @@
 ---
-title: "Multi Container Pods"
+title: "Multi-container"
 description: ""
 date: 2023-07-26T07:25:24+02:00
 lastmod: 2023-07-26T07:25:24+02:00
@@ -8,8 +8,8 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "configuration"
-weight: 1040
+    parent: "pod"
+weight: 1030
 toc: true
 ---
 

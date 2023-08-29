@@ -8,7 +8,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "resources"
+    parent: "pod-management"
 weight: 1035
 toc: true
 ---

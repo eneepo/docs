@@ -1,5 +1,5 @@
 ---
-title: "Pod Conditions and Propes"
+title: "Conditions, Propes"
 description: ""
 date: 2023-07-26T07:29:49+02:00
 lastmod: 2023-07-26T07:29:49+02:00
@@ -8,7 +8,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "configuration"
+    parent: "pod"
 weight: 1050
 toc: true
 ---
