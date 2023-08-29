@@ -8,7 +8,7 @@ images: []
 type: docs
 menu:
   kubernetes:
-    parent: "configuration"
+    parent: "pod"
 weight: 1050
 toc: true
 ---
