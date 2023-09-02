@@ -1,5 +1,5 @@
 ---
-title: "Intro"
+title: "kind"
 description: "A list of all the supported resource types and their abbreviated aliases in Kubernetes"
 date: 2023-07-09T16:48:37+02:00
 lastmod: 2023-07-09T16:48:37+02:00
@@ -9,7 +9,7 @@ type: docs
 menu:
   kubernetes:
     parent: "resources"
-weight: 1000
+weight: 990
 toc: true
 ---
 ## kind & apiVersion
