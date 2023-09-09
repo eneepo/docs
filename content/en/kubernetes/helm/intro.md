@@ -3,8 +3,14 @@ title: "Intro"
 description: ""
 date: 2023-09-05T15:52:05Z
 lastmod: 2023-09-05T15:52:05Z
-draft: true
+draft: false
 images: []
+type: docs
+menu:
+  kubernetes:
+    parent: "extra"
+weight: 9950
+toc: true
 ---
 
 Helm is a package manager for Kubernetes that allows you to define, install, and manage Kubernetes applications as reusable packages known as "charts." Charts encapsulate all the necessary Kubernetes resources and configurations needed to deploy an application.
@@ -46,6 +52,12 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 ```
+
+If you don't have openssl installed you may want to use the following command to disable checksum check:
+```bash
+VERIFY_CHECKSUM=false ./get_helm.sh
+```
+
 
 ### Brew
 

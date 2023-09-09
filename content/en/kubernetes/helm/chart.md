@@ -3,8 +3,14 @@ title: "Chart"
 description: ""
 date: 2023-09-05T15:51:42Z
 lastmod: 2023-09-05T15:51:42Z
-draft: true
+draft: false
 images: []
+type: docs
+menu:
+  kubernetes:
+    parent: "extra"
+weight: 9951
+toc: true
 ---
 
 Creating a Helm chart involves defining the structure, configuration values, and Kubernetes resources required for your application. In this section, I'll guide you through creating a simple Helm chart and explain the template files.
@@ -243,6 +249,11 @@ helm install mywebapp-release ./mywebapp
 
 Here, `mywebapp-release` is the name you give to the release, and `./mywebapp` is the path to your chart directory.
 
-That's it! You've created a basic Helm chart. You can now customize and expand it to suit your application's needs. To deploy the chart with specific configuration values, use the `--set` flag followed by key-value pairs or provide a custom values file with `--values`.
+## Subcharts
 
-Creating and managing Helm charts can greatly simplify the deployment and management of complex applications in Kubernetes, making it an essential tool for Kubernetes developers and operators.
+Subcharts are a powerful feature that allows you to break down complex Kubernetes applications into smaller, manageable components. Subcharts, are Helm charts that are used as dependencies within other charts. They allow you to break down a larger application or service into smaller, more manageable pieces. Subcharts can be thought of as building blocks that can be combined to create more complex applications. you can read more about the subcharts on the [offical docs](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+
+###  Use Case
+
+Consider an e-commerce application that includes multiple microservices, a database, and a message broker. You can create individual Helm charts for each microservice, the database, and the message broker. Then, you can create a parent chart for the entire e-commerce application that includes these subcharts as dependencies. This modular approach simplifies the deployment and management of the complex application.
+

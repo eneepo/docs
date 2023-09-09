@@ -3,8 +3,14 @@ title: "Templating Language"
 description: ""
 date: 2023-09-06T20:06:54Z
 lastmod: 2023-09-06T20:06:54Z
-draft: true
+draft: false
 images: []
+type: docs
+menu:
+  kubernetes:
+    parent: "extra"
+weight: 9952
+toc: true
 ---
 
 Helm uses a templating language called Go templates to dynamically generate Kubernetes manifests based on user-defined values and templates. This page will provide you with an introduction to Helm's templating language and its core concepts:
@@ -16,7 +22,7 @@ Helm templates use double curly braces `{{ }}` to enclose template expressions. 
 ```yaml
 apiVersion: v1
 kind: Service
-metadata:
+metadata: 
   name: {{ .Release.Name }}-service
 ```
 
@@ -66,7 +72,7 @@ Helm templates support basic control structures, such as `if`, `range`, and `wit
 
 ## Functions and Pipelines
 
-Helm provides several built-in functions that allow you to manipulate data and perform operations within your templates. For example:
+Helm provides several [built-in functions](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/) that allow you to manipulate data and perform operations within your templates. For example:
 
 ```yaml
 # Concatenate strings
