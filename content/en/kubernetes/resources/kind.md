@@ -15,65 +15,69 @@ toc: true
 ## kind & apiVersion
 The following table includes a list of all the supported resource types and their abbreviated aliases.
 
-(This output can be retrieved from kubectl api-resources, and was accurate as of Kubernetes 1.25.0)
+(This output can be retrieved from kubectl api-resources, and was accurate as of Kubernetes v1.27.4-eks)
 
-| NAME                            | SHORTNAMES                           | APIVERSION              | NAMESPACED                     | KIND                      |
-|---------------------------------|--------------------------------------|-------------------------|--------------------------------|---------------------------|
-| bindings                        | v1                                   | true                    | Binding                        |                           |
-| componentstatuses               | cs                                   | v1                      | false                          | ComponentStatus           |
-| configmaps                      | cm                                   | v1                      | true                           | ConfigMap                 |
-| endpoints                       | ep                                   | v1                      | true                           | Endpoints                 |
-| events                          | ev                                   | v1                      | true                           | Event                     |
-| limitranges                     | limits                               | v1                      | true                           | LimitRange                |
-| namespaces                      | ns                                   | v1                      | false                          | Namespace                 |
-| nodes                           | no                                   | v1                      | false                          | Node                      |
-| persistentvolumeclaims          | pvc                                  | v1                      | true                           | PersistentVolumeClaim     |
-| persistentvolumes               | pv                                   | v1                      | false                          | PersistentVolume          |
-| pods                            | po                                   | v1                      | true                           | Pod                       |
-| podtemplates                    | v1                                   | true                    | PodTemplate                    |                           |
-| replicationcontrollers          | rc                                   | v1                      | true                           | ReplicationController     |
-| resourcequotas                  | quota                                | v1                      | true                           | ResourceQuota             |
-| secrets                         | v1                                   | true                    | Secret                         |                           |
-| serviceaccounts                 | sa                                   | v1                      | true                           | ServiceAccount            |
-| services                        | svc                                  | v1                      | true                           | Service                   |
-| mutatingwebhookconfigurations   | admissionregistration.k8s.io/v1      | false                   | MutatingWebhookConfiguration   |                           |
-| validatingwebhookconfigurations | admissionregistration.k8s.io/v1      | false                   | ValidatingWebhookConfiguration |                           |
-| customresourcedefinitions       | crd,crds                             | apiextensions.k8s.io/v1 | false                          | CustomResourceDefinition  |
-| apiservices                     | apiregistration.k8s.io/v1            | false                   | APIService                     |                           |
-| controllerrevisions             | apps/v1                              | true                    | ControllerRevision             |                           |
-| daemonsets                      | ds                                   | apps/v1                 | true                           | DaemonSet                 |
-| deployments                     | deploy                               | apps/v1                 | true                           | Deployment                |
-| replicasets                     | rs                                   | apps/v1                 | true                           | ReplicaSet                |
-| statefulsets                    | sts                                  | apps/v1                 | true                           | StatefulSet               |
-| tokenreviews                    | authentication.k8s.io/v1             | false                   | TokenReview                    |                           |
-| localsubjectaccessreviews       | authorization.k8s.io/v1              | true                    | LocalSubjectAccessReview       |                           |
-| selfsubjectaccessreviews        | authorization.k8s.io/v1              | false                   | SelfSubjectAccessReview        |                           |
-| selfsubjectrulesreviews         | authorization.k8s.io/v1              | false                   | SelfSubjectRulesReview         |                           |
-| subjectaccessreviews            | authorization.k8s.io/v1              | false                   | SubjectAccessReview            |                           |
-| horizontalpodautoscalers        | hpa                                  | autoscaling/v2          | true                           | HorizontalPodAutoscaler   |
-| cronjobs                        | cj                                   | batch/v1                | true                           | CronJob                   |
-| jobs                            | batch/v1                             | true                    | Job                            |                           |
-| certificatesigningrequests      | csr                                  | certificates.k8s.io/v1  | false                          | CertificateSigningRequest |
-| leases                          | coordination.k8s.io/v1               | true                    | Lease                          |                           |
-| endpointslices                  | discovery.k8s.io/v1                  | true                    | EndpointSlice                  |                           |
-| events                          | ev                                   | events.k8s.io/v1        | true                           | Event                     |
-| flowschemas                     | flowcontrol.apiserver.k8s.io/v1beta2 | false                   | FlowSchema                     |                           |
-| prioritylevelconfigurations     | flowcontrol.apiserver.k8s.io/v1beta2 | false                   | PriorityLevelConfiguration     |                           |
-| ingressclasses                  | networking.k8s.io/v1                 | false                   | IngressClass                   |                           |
-| ingresses                       | ing                                  | networking.k8s.io/v1    | true                           | Ingress                   |
-| networkpolicies                 | netpol                               | networking.k8s.io/v1    | true                           | NetworkPolicy             |
-| runtimeclasses                  | node.k8s.io/v1                       | false                   | RuntimeClass                   |                           |
-| poddisruptionbudgets            | pdb                                  | policy/v1               | true                           | PodDisruptionBudget       |
-| clusterrolebindings             | rbac.authorization.k8s.io/v1         | false                   | ClusterRoleBinding             |                           |
-| clusterroles                    | rbac.authorization.k8s.io/v1         | false                   | ClusterRole                    |                           |
-| rolebindings                    | rbac.authorization.k8s.io/v1         | true                    | RoleBinding                    |                           |
-| roles                           | rbac.authorization.k8s.io/v1         | true                    | Role                           |                           |
-| priorityclasses                 | pc                                   | scheduling.k8s.io/v1    | false                          | PriorityClass             |
-| csidrivers                      | storage.k8s.io/v1                    | false                   | CSIDriver                      |                           |
-| csinodes                        | storage.k8s.io/v1                    | false                   | CSINode                        |                           |
-| csistoragecapacities            | storage.k8s.io/v1                    | true                    | CSIStorageCapacity             |                           |
-| storageclasses                  | sc                                   | storage.k8s.io/v1       | false                          | StorageClass              |
-| volumeattachments               | storage.k8s.io/v1                    | false                   | VolumeAttachment               |                           |
+| NAME                            | SHORTNAMES | APIVERSION                           | NAMESPACED | KIND                           |
+|---------------------------------|------------|--------------------------------------|------------|--------------------------------|
+| bindings                        |            | v1                                   | TRUE       | Binding                        |
+| componentstatuses               | cs         | v1                                   | FALSE      | ComponentStatus                |
+| configmaps                      | cm         | v1                                   | TRUE       | ConfigMap                      |
+| endpoints                       | ep         | v1                                   | TRUE       | Endpoints                      |
+| events                          | ev         | v1                                   | TRUE       | Event                          |
+| limitranges                     | limits     | v1                                   | TRUE       | LimitRange                     |
+| namespaces                      | ns         | v1                                   | FALSE      | Namespace                      |
+| nodes                           | no         | v1                                   | FALSE      | Node                           |
+| persistentvolumeclaims          | pvc        | v1                                   | TRUE       | PersistentVolumeClaim          |
+| persistentvolumes               | pv         | v1                                   | FALSE      | PersistentVolume               |
+| pods                            | po         | v1                                   | TRUE       | Pod                            |
+| podtemplates                    |            | v1                                   | TRUE       | PodTemplate                    |
+| replicationcontrollers          | rc         | v1                                   | TRUE       | ReplicationController          |
+| resourcequotas                  | quota      | v1                                   | TRUE       | ResourceQuota                  |
+| secrets                         |            | v1                                   | TRUE       | Secret                         |
+| serviceaccounts                 | sa         | v1                                   | TRUE       | ServiceAccount                 |
+| services                        | svc        | v1                                   | TRUE       | Service                        |
+| mutatingwebhookconfigurations   |            | admissionregistration.k8s.io/v1      | FALSE      | MutatingWebhookConfiguration   |
+| validatingwebhookconfigurations |            | admissionregistration.k8s.io/v1      | FALSE      | ValidatingWebhookConfiguration |
+| customresourcedefinitions       | crd,crds   | apiextensions.k8s.io/v1              | FALSE      | CustomResourceDefinition       |
+| apiservices                     |            | apiregistration.k8s.io/v1            | FALSE      | APIService                     |
+| controllerrevisions             |            | apps/v1                              | TRUE       | ControllerRevision             |
+| daemonsets                      | ds         | apps/v1                              | TRUE       | DaemonSet                      |
+| deployments                     | deploy     | apps/v1                              | TRUE       | Deployment                     |
+| replicasets                     | rs         | apps/v1                              | TRUE       | ReplicaSet                     |
+| statefulsets                    | sts        | apps/v1                              | TRUE       | StatefulSet                    |
+| tokenreviews                    |            | authentication.k8s.io/v1             | FALSE      | TokenReview                    |
+| localsubjectaccessreviews       |            | authorization.k8s.io/v1              | TRUE       | LocalSubjectAccessReview       |
+| selfsubjectaccessreviews        |            | authorization.k8s.io/v1              | FALSE      | SelfSubjectAccessReview        |
+| selfsubjectrulesreviews         |            | authorization.k8s.io/v1              | FALSE      | SelfSubjectRulesReview         |
+| subjectaccessreviews            |            | authorization.k8s.io/v1              | FALSE      | SubjectAccessReview            |
+| horizontalpodautoscalers        | hpa        | autoscaling/v2                       | TRUE       | HorizontalPodAutoscaler        |
+| cronjobs                        | cj         | batch/v1                             | TRUE       | CronJob                        |
+| jobs                            |            | batch/v1                             | TRUE       | Job                            |
+| certificatesigningrequests      | csr        | certificates.k8s.io/v1               | FALSE      | CertificateSigningRequest      |
+| leases                          |            | coordination.k8s.io/v1               | TRUE       | Lease                          |
+| eniconfigs                      |            | crd.k8s.amazonaws.com/v1alpha1       | FALSE      | ENIConfig                      |
+| endpointslices                  |            | discovery.k8s.io/v1                  | TRUE       | EndpointSlice                  |
+| events                          | ev         | events.k8s.io/v1                     | TRUE       | Event                          |
+| flowschemas                     |            | flowcontrol.apiserver.k8s.io/v1beta3 | FALSE      | FlowSchema                     |
+| prioritylevelconfigurations     |            | flowcontrol.apiserver.k8s.io/v1beta3 | FALSE      | PriorityLevelConfiguration     |
+| policyendpoints                 |            | networking.k8s.aws/v1alpha1          | TRUE       | PolicyEndpoint                 |
+| ingressclasses                  |            | networking.k8s.io/v1                 | FALSE      | IngressClass                   |
+| ingresses                       | ing        | networking.k8s.io/v1                 | TRUE       | Ingress                        |
+| networkpolicies                 | netpol     | networking.k8s.io/v1                 | TRUE       | NetworkPolicy                  |
+| runtimeclasses                  |            | node.k8s.io/v1                       | FALSE      | RuntimeClass                   |
+| poddisruptionbudgets            | pdb        | policy/v1                            | TRUE       | PodDisruptionBudget            |
+| clusterrolebindings             |            | rbac.authorization.k8s.io/v1         | FALSE      | ClusterRoleBinding             |
+| clusterroles                    |            | rbac.authorization.k8s.io/v1         | FALSE      | ClusterRole                    |
+| rolebindings                    |            | rbac.authorization.k8s.io/v1         | TRUE       | RoleBinding                    |
+| roles                           |            | rbac.authorization.k8s.io/v1         | TRUE       | Role                           |
+| priorityclasses                 | pc         | scheduling.k8s.io/v1                 | FALSE      | PriorityClass                  |
+| csidrivers                      |            | storage.k8s.io/v1                    | FALSE      | CSIDriver                      |
+| csinodes                        |            | storage.k8s.io/v1                    | FALSE      | CSINode                        |
+| csistoragecapacities            |            | storage.k8s.io/v1                    | TRUE       | CSIStorageCapacity             |
+| storageclasses                  | sc         | storage.k8s.io/v1                    | FALSE      | StorageClass                   |
+| volumeattachments               |            | storage.k8s.io/v1                    | FALSE      | VolumeAttachment               |
+| cninodes                        | cnd        | vpcresources.k8s.aws/v1alpha1        | FALSE      | CNINode                        |
+| securitygrouppolicies           | sgp        | vpcresources.k8s.aws/v1beta1         | TRUE       | SecurityGroupPolicy            |
 {.table-sm}
 
 
